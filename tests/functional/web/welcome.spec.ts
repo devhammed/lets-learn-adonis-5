@@ -1,12 +1,22 @@
 import { test } from '@japa/runner';
 import Route from '@ioc:Adonis/Core/Route';
 
-test('display welcome page', async ({ client }) => {
-  const url = Route.makeUrl('web.welcome');
+const routeName = 'web.welcome';
 
-  const response = await client.get(url);
+test.group(routeName, () => {
+  test('check if welcome page returns 200', async ({ client }) => {
+    const url = Route.makeUrl(routeName);
 
-  response.assertStatus(200);
+    const response = await client.get(url);
 
-  response.assertTextIncludes('<h1 class="title">It Works!</h1>');
+    response.assertStatus(200);
+  });
+
+  test('check if welcome page contains "It works"', async ({ client }) => {
+    const url = Route.makeUrl(routeName);
+
+    const response = await client.get(url);
+
+    response.assertTextIncludes('<h1 class="title">It Works!</h1>');
+  });
 });

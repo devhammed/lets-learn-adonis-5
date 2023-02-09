@@ -1,14 +1,24 @@
 import { test } from '@japa/runner';
 import Route from '@ioc:Adonis/Core/Route';
 
-test('display socket page', async ({ client }) => {
-  const url = Route.makeUrl('web.socket');
+const routeName = 'web.socket';
 
-  const response = await client.get(url);
+test.group(routeName, () => {
+  test('check if socket page returns 200', async ({ client }) => {
+    const url = Route.makeUrl(routeName);
 
-  response.assertStatus(200);
+    const response = await client.get(url);
 
-  response.assertTextIncludes(
-    '<p class="subtitle">Check the console for socket messages.</p>'
-  );
+    response.assertStatus(200);
+  });
+
+  test('check if socket page has "check console" text', async ({ client }) => {
+    const url = Route.makeUrl(routeName);
+
+    const response = await client.get(url);
+
+    response.assertTextIncludes(
+      '<p class="subtitle">Check the console for socket messages.</p>'
+    );
+  });
 });

@@ -1,14 +1,24 @@
 import { test } from '@japa/runner';
 import Route from '@ioc:Adonis/Core/Route';
 
-test('check api health', async ({ client }) => {
-  const url = Route.makeUrl('api.v1.health');
+const routeName = 'api.v1.health';
 
-  const response = await client.get(url);
+test.group(routeName, () => {
+  test('check if api health is 200', async ({ client }) => {
+    const url = Route.makeUrl(routeName);
 
-  response.assertStatus(200);
+    const response = await client.get(url);
 
-  response.assertBodyContains({
-    ok: true,
+    response.assertStatus(200);
+  });
+
+  test('check if api health contains "ok" boolean', async ({ client }) => {
+    const url = Route.makeUrl(routeName);
+
+    const response = await client.get(url);
+
+    response.assertBodyContains({
+      ok: true,
+    });
   });
 });
