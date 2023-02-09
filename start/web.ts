@@ -9,10 +9,14 @@
 
 import Route from '@ioc:Adonis/Core/Route';
 
-Route.get('/', async ({ view }) => {
-  return view.render('welcome');
-});
+function registerRoutes() {
+  Route.get('/', async ({ view }) => {
+    return view.render('welcome');
+  }).as('home');
 
-Route.get('/socket', async ({ view }) => {
-  return view.render('socket');
-});
+  Route.get('/socket', async ({ view }) => {
+    return view.render('socket');
+  }).as('socket');
+}
+
+export default Route.group(registerRoutes).as('web');
