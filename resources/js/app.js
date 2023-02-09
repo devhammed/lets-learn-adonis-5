@@ -1,1 +1,3 @@
-import '../css/app.css'
+import '../css/app.css';
+
+console.log('JS is working!');
