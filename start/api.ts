@@ -20,4 +20,4 @@ function registerRoutes() {
   Route.group(registerV1Routes).as('v1').prefix('v1');
 }
 
-export default Route.group(registerRoutes).prefix('api').as('api');
+export default Route.group(registerRoutes).as('api').prefix('api');
