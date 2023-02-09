@@ -198,9 +198,11 @@ Encore.configureDevServerOptions((options) => {
 |
 */
 const config = Encore.getWebpackConfig();
+
 config.infrastructureLogging = {
   level: 'warn',
 };
+
 config.stats = 'errors-warnings';
 
 /*
