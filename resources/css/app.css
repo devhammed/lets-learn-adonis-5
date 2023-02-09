@@ -24,11 +24,6 @@ body:before {
   padding: 0;
 }
 
-a {
-  color: #5a45ff;
-  text-decoration: none;
-}
-
 main {
   max-width: 620px;
   margin: auto;
@@ -49,29 +44,4 @@ main {
 .subtitle {
   font-size: 26px;
   margin-bottom: 40px;
-}
-
-p {
-  margin-bottom: 20px;
-}
-
-main ul {
-  list-style: none;
-}
-
-main li {
-  margin-bottom: 5px;
-  position: relative;
-  padding-left: 25px;
-}
-
-main li:before {
-  content: '—';
-  position: absolute;
-  left: 0;
-}
-
-main code {
-  font-size: 16px;
-  background: #e6e2ff;
 }
