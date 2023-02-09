@@ -45,7 +45,10 @@ Encore.setPublicPath('/assets');
 | entrypoints.
 |
 */
-Encore.addEntry('app', './resources/js/app.ts');
+Encore.addEntries({
+  app: './resources/js/app.ts',
+  socket: './resources/js/socket.ts',
+});
 
 /*
 |--------------------------------------------------------------------------
