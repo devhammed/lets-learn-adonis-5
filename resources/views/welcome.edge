@@ -19,6 +19,16 @@
       </p>
     </div>
   </main>
+
+  <script src="/socket.io/socket.io.min.js"></script>
+  <script>
+    const socket = io();
+
+    socket.on('news', (data) => {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
+  </script>
 </body>
 
 </html>
