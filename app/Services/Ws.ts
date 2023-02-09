@@ -33,7 +33,7 @@ class Ws {
     /**
      * Log boot.
      */
-    Logger.info('Socket server booted.');
+    Logger.info('socket server booted.');
   }
 
   public emit(event: string, data?: Record<string, any>) {
