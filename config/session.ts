@@ -19,7 +19,7 @@ export default sessionConfig({
   | entire application
   |
   */
-  enabled: true,
+  enabled: false,
 
   /*
   |--------------------------------------------------------------------------

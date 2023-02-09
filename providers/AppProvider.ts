@@ -8,7 +8,26 @@ export default class AppProvider {
   }
 
   public async boot() {
-    // IoC container is ready
+    /**
+     * Disable Session for API routes.
+     */
+    this.app.container.withBindings(['Adonis/Core/Server'], (Server) => {
+      /**
+       * Initiate session store.
+       */
+      Server.hooks.before(async ({ session }) => {
+        await session.initiate(false);
+      });
+
+      /**
+       * Commit store mutations.
+       */
+      Server.hooks.after(async ({ session, route }) => {
+        if (!route?.name?.startsWith('api')) {
+          await session.commit();
+        }
+      });
+    });
   }
 
   public async ready() {
