@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 function App() {
   return (
     <div>
-      <h1 className='title'>It Works!</h1>
+      <h1 className='title text-3xl font-bold underline'>It Works!</h1>
       <p className='subtitle'>
         Congratulations, you have just created your first AdonisJS app.
       </p>
