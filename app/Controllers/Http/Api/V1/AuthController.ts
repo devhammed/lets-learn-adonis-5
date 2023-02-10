@@ -15,8 +15,10 @@ export default class AuthController {
         token: value,
         type,
         user,
-        expiresIn,
-      } = await auth.use('api').attempt(email, password);
+        expiresAt,
+      } = await auth
+        .use('api')
+        .attempt(email, password, { expiresIn: '30 days' });
 
       return {
         ok: true,
@@ -24,7 +26,7 @@ export default class AuthController {
           token: {
             value,
             type,
-            expiresIn,
+            expiresAt: expiresAt?.toUnixInteger(),
           },
           user,
         },
@@ -46,8 +48,8 @@ export default class AuthController {
       const {
         token: value,
         type,
-        expiresIn,
-      } = await auth.use('api').generate(user);
+        expiresAt,
+      } = await auth.use('api').generate(user, { expiresIn: '30 days' });
 
       return {
         ok: true,
@@ -55,7 +57,7 @@ export default class AuthController {
           token: {
             value,
             type,
-            expiresIn,
+            expiresAt: expiresAt?.toUnixInteger(),
           },
           user,
         },
@@ -63,5 +65,12 @@ export default class AuthController {
     } catch {
       return { ok: false, message: 'Unable to register user.' };
     }
+  }
+
+  /**
+   * Get current user's profile.
+   */
+  public async me({ auth }: HttpContextContract) {
+    return { ok: true, data: auth.user };
   }
 }
