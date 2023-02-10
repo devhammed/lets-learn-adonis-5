@@ -31,9 +31,7 @@ export default class AppProvider {
   }
 
   public async ready() {
-    if (this.app.environment === 'web') {
-      await import('../start/socket');
-    }
+    // App is ready
   }
 
   public async shutdown() {
