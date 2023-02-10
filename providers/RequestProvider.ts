@@ -16,7 +16,7 @@ export default class RequestProvider {
       return (
         (types[0] &&
           (types[0].includes('/json') || types[0].includes('+json'))) ||
-        this.completeUrl(true).includes('api/v')
+        this.completeUrl(true).includes('/api/v')
       );
     });
   }
