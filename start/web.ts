@@ -17,6 +17,10 @@ function registerRoutes() {
   Route.get('/socket', async ({ view }) => {
     return view.render('socket');
   }).as('socket');
+
+  Route.get('/react', async ({ view }) => {
+    return view.render('react');
+  }).as('react');
 }
 
 export default Route.group(registerRoutes).as('web');

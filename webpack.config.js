@@ -49,6 +49,7 @@ Encore.setPublicPath('/assets');
 Encore.addEntries({
   app: './resources/js/app.ts',
   socket: './resources/js/socket.ts',
+  react: './resources/js/react.tsx',
 });
 
 /*
@@ -98,6 +99,8 @@ Encore.disableSingleRuntimeChunk();
 | You can configure webpack plugins here.
 |
 */
+Encore.enableReactPreset();
+Encore.enableTypeScriptLoader();
 Encore.addPlugin(
   new DotenvWebpackPlugin({ allowEmptyValues: true, systemvars: true })
 );
