@@ -1,5 +1,6 @@
 const { join } = require('path');
 const Encore = require('@symfony/webpack-encore');
+const DotenvWebpackPlugin = require('dotenv-webpack');
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,18 @@ Encore.splitEntryChunks();
 |
 */
 Encore.disableSingleRuntimeChunk();
+
+/**
+|-------------------------------------------------------------------------
+| Configure WebPack Plugins
+|-------------------------------------------------------------------------
+|
+| You can configure webpack plugins here.
+|
+*/
+Encore.addPlugin(
+  new DotenvWebpackPlugin({ allowEmptyValues: true, systemvars: true })
+);
 
 /*
 |--------------------------------------------------------------------------
