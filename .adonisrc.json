@@ -18,7 +18,6 @@
     "./start/kernel",
     {
       "file": "./start/socket",
-      "optional": false,
       "environment": ["web"]
     }
   ],
