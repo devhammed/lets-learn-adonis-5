@@ -1,5 +1,5 @@
-import uuid from 'uuid';
 import { DateTime } from 'luxon';
+import { v4 as uuid4 } from 'uuid';
 import { BaseModel, beforeCreate, column } from '@ioc:Adonis/Lucid/Orm';
 
 export default class User extends BaseModel {
@@ -22,6 +22,6 @@ export default class User extends BaseModel {
 
   @beforeCreate()
   public static assignUuid(user: User) {
-    user.id = uuid.v4();
+    user.id = uuid4();
   }
 }
