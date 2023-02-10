@@ -1,7 +1,7 @@
-import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import { schema, rules, CustomMessages } from '@ioc:Adonis/Core/Validator';
+import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 
-export default class LoginValidator {
+export default class RegisterValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   /*
@@ -24,8 +24,12 @@ export default class LoginValidator {
    *    ```
    */
   public schema = schema.create({
-    email: schema.string({ trim: true }, [rules.required(), rules.email()]),
-    password: schema.string({}, [rules.required(), rules.minLength(8)]),
+    email: schema.string({ trim: true }, [
+      rules.email(),
+      rules.unique({ table: 'users', column: 'email' }),
+    ]),
+    password: schema.string({}, [rules.minLength(8)]),
+    password_confirmation: schema.string({}, [rules.confirmed('password')]),
   });
 
   /**

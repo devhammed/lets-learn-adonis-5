@@ -9,11 +9,16 @@
 
 import Route from '@ioc:Adonis/Core/Route';
 
-function registerRoutes() {
-  Route.get('/health', () => ({
-    ok: true,
-    message: 'We are up and running!',
-  })).as('health');
+function registerAuthRoutes() {
+  Route.post('login', 'AuthController.login').as('login');
+  Route.post('register', 'AuthController.register').as('register');
 }
 
-export default Route.group(registerRoutes).as('api.v1').prefix('api/v1');
+function registerRoutes() {
+  Route.group(registerAuthRoutes).as('auth').prefix('auth');
+}
+
+export default Route.group(registerRoutes)
+  .as('api.v1')
+  .prefix('api/v1')
+  .namespace('App/Controllers/Http/Api/V1');
