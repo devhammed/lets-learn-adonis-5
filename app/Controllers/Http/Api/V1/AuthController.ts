@@ -68,6 +68,15 @@ export default class AuthController {
   }
 
   /**
+   * Logout a user.
+   */
+  public async logout({ auth }: HttpContextContract) {
+    await auth.use('api').revoke();
+
+    return { ok: true, message: 'Logged out.' };
+  }
+
+  /**
    * Get current user's profile.
    */
   public async me({ auth }: HttpContextContract) {

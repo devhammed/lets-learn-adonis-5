@@ -17,6 +17,8 @@ test.group(routeName, () => {
 
     const response = await client.get(url);
 
-    response.assertTextIncludes('<h1 class="title">It Works!</h1>');
+    response.assertTextIncludes(
+      '<h1 class="title text-3xl font-bold underline">It Works!</h1>'
+    );
   });
 });
