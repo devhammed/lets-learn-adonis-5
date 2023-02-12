@@ -40,10 +40,10 @@ export default class AuthController {
    * Register a user.
    */
   public async register({ request, auth }: HttpContextContract) {
-    const { email, password } = await request.validate(RegisterValidator);
+    const data = await request.validate(RegisterValidator);
 
     try {
-      const user = await User.create({ email, password });
+      const user = await User.create(data);
 
       const {
         token: value,

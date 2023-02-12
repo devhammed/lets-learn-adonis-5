@@ -28,8 +28,7 @@ export default class RegisterValidator {
       rules.email(),
       rules.unique({ table: 'users', column: 'email' }),
     ]),
-    password: schema.string({}, [rules.minLength(8)]),
-    password_confirmation: schema.string({}, [rules.confirmed('password')]),
+    password: schema.string({}, [rules.minLength(8), rules.confirmed()]),
   });
 
   /**
