@@ -7,7 +7,6 @@
 |
 */
 
-import HealthCheck from '@ioc:Adonis/Core/HealthCheck';
 import Route from '@ioc:Adonis/Core/Route';
 
 function registerAuthRoutes() {
