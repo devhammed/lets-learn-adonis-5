@@ -1,7 +1,7 @@
+import User from 'App/Models/User';
 import LoginValidator from 'App/Validators/Api/Auth/V1/LoginValidator';
 import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext';
 import RegisterValidator from 'App/Validators/Api/Auth/V1/RegisterValidator';
-import User from 'App/Models/User';
 
 export default class AuthController {
   /**
@@ -26,7 +26,7 @@ export default class AuthController {
           token: {
             value,
             type,
-            expiresAt: expiresAt?.toUnixInteger(),
+            expiresAt: expiresAt!.toUnixInteger(),
           },
           user,
         },
@@ -57,7 +57,7 @@ export default class AuthController {
           token: {
             value,
             type,
-            expiresAt: expiresAt?.toUnixInteger(),
+            expiresAt: expiresAt!.toUnixInteger(),
           },
           user,
         },
