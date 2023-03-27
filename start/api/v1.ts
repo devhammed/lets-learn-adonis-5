@@ -20,24 +20,6 @@ function registerAuthRoutes() {
 }
 
 function registerRoutes() {
-  Route.get('health', async ({ response }) => {
-    const { healthy: ok, report: data } = await HealthCheck.getReport();
-
-    if (!ok) {
-      return response.status(500).json({
-        ok,
-        message: 'Health check failed.',
-        data,
-      });
-    }
-
-    return response.status(200).json({
-      ok,
-      message: 'Health check successful.',
-      data,
-    });
-  }).as('health');
-
   Route.group(registerAuthRoutes).as('auth').prefix('auth');
 }
 
