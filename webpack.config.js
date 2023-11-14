@@ -159,7 +159,7 @@ Encore.configureDevServerOptions((options) => {
   }
 
   /**
-   * Enable live reload and add views directory
+   * Enable live reload.
    */
   options.liveReload = true;
 
