@@ -152,7 +152,9 @@ Encore.configureDevServerOptions((options) => {
    */
   if (!options.static) {
     options.static = [];
-  } else if (!Array.isArray(options.static)) {
+  }
+
+  if (!Array.isArray(options.static)) {
     options.static = [options.static];
   }
 
@@ -161,24 +163,14 @@ Encore.configureDevServerOptions((options) => {
    */
   options.liveReload = true;
 
+  /**
+   * Add views directory to the dev server static directories
+   */
   options.static.push({
     directory: join(__dirname, './resources/views'),
     watch: true,
   });
 });
-
-/*
-|--------------------------------------------------------------------------
-| CSS precompilers support
-|--------------------------------------------------------------------------
-|
-| Uncomment one of the following lines of code to enable support for your
-| favorite CSS precompiler
-|
-*/
-// Encore.enableSassLoader()
-// Encore.enableLessLoader()
-// Encore.enableStylusLoader()
 
 /*
 |--------------------------------------------------------------------------
@@ -190,21 +182,6 @@ Encore.configureDevServerOptions((options) => {
 |
 */
 Encore.enablePostCssLoader();
-
-/*
-|--------------------------------------------------------------------------
-| Enable Vue loader
-|--------------------------------------------------------------------------
-|
-| Uncomment the following lines of code to enable support for vue. Also make
-| sure to install the required dependencies.
-|
-*/
-// Encore.enableVueLoader(() => {}, {
-//   version: 3,
-//   runtimeCompilerBuild: false,
-//   useJsx: false
-// })
 
 /*
 |--------------------------------------------------------------------------
