@@ -1,3 +1,4 @@
+import ApiToken from 'App/Models/ApiToken';
 import { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 import ApiTokensValidator from 'App/Validators/Api/V1/ApiTokensValidator';
 
@@ -33,9 +34,13 @@ export default class ApiTokensController {
     /**
      * Revoke user token.
      */
-    public async destroy({ auth }: HttpContextContract) {
-        await auth.use('api').revoke();
+    public async destroy({ params, bouncer, response }: HttpContextContract) {
+        const apiToken = await ApiToken.findOrFail(params.id);
 
-        return { ok: true, message: 'Logged out.' };
+        await bouncer.with('ApiTokenPolicy').authorize('delete', apiToken);
+
+        await apiToken.delete();
+
+        return response.noContent();
     }
 }

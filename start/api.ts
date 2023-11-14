@@ -13,6 +13,9 @@ Route
     .group(() => {
         Route.resource('users', 'UsersController')
             .only(['store', 'show']);
+        Route.resource('api-tokens', 'ApiTokensController')
+            .only(['store', 'destroy'])
+            .middleware({destroy: ['auth:api']});
     })
     .as('api.v1')
     .prefix('api/v1')
