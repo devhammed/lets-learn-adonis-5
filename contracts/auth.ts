@@ -13,7 +13,7 @@ declare module '@ioc:Adonis/Addons/Auth' {
   | Providers
   |--------------------------------------------------------------------------
   |
-  | The providers are used to fetch users. The Auth module comes pre-bundled
+  | The providers are used to fetch users. The Users module comes pre-bundled
   | with two providers that are `Lucid` and `Database`. Both uses database
   | to fetch user details.
   |
