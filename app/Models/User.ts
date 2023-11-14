@@ -1,9 +1,12 @@
 import {DateTime} from 'luxon';
 import Hash from '@ioc:Adonis/Core/Hash';
+import ApiToken from 'App/Models/ApiToken';
 import {
     BaseModel,
-    beforeSave,
+    HasMany,
     column,
+    hasMany,
+    beforeSave,
 } from '@ioc:Adonis/Lucid/Orm';
 
 export default class User extends BaseModel {
@@ -24,6 +27,9 @@ export default class User extends BaseModel {
 
     @column.dateTime({autoCreate: true, autoUpdate: true})
     public updatedAt: DateTime;
+
+    @hasMany(() => ApiToken)
+    public apiTokens: HasMany<typeof ApiToken>;
 
     @beforeSave()
     public static async hashPassword(user: User) {
