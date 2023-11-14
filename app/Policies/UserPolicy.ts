@@ -12,7 +12,7 @@ export default class UserPolicy extends BasePolicy {
 
     @action({allowGuest: true})
     public async create(user: User | null) {
-        return !user;
+        return user === null;
     }
 
     public async update(user: User, model: User) {
