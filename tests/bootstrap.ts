@@ -5,13 +5,13 @@
  * file.
  */
 
-import type { Config } from '@japa/runner';
+import type {Config} from '@japa/runner';
 import TestUtils from '@ioc:Adonis/Core/TestUtils';
 import {
-  assert,
-  runFailedTests,
-  specReporter,
-  apiClient,
+    assert,
+    runFailedTests,
+    specReporter,
+    apiClient,
 } from '@japa/preset-adonis';
 
 /*
@@ -26,9 +26,9 @@ import {
 |
 */
 export const plugins: Required<Config>['plugins'] = [
-  assert(),
-  runFailedTests(),
-  apiClient(),
+    assert(),
+    runFailedTests(),
+    apiClient(),
 ];
 
 /*
@@ -41,7 +41,9 @@ export const plugins: Required<Config>['plugins'] = [
 | of tests on the terminal.
 |
 */
-export const reporters: Required<Config>['reporters'] = [specReporter()];
+export const reporters: Required<Config>['reporters'] = [
+    specReporter(),
+];
 
 /*
 |--------------------------------------------------------------------------
@@ -56,8 +58,11 @@ export const reporters: Required<Config>['reporters'] = [specReporter()];
 |
 */
 export const runnerHooks: Pick<Required<Config>, 'setup' | 'teardown'> = {
-  setup: [() => TestUtils.ace().loadCommands()],
-  teardown: [],
+    setup: [
+        () => TestUtils.ace().loadCommands(),
+        () => TestUtils.db().migrate(),
+    ],
+    teardown: [],
 };
 
 /*
@@ -72,7 +77,7 @@ export const runnerHooks: Pick<Required<Config>, 'setup' | 'teardown'> = {
 | the HTTP server when it is a functional suite.
 */
 export const configureSuite: Required<Config>['configureSuite'] = (suite) => {
-  if (suite.name === 'functional') {
-    suite.setup(() => TestUtils.httpServer().start());
-  }
+    if (suite.name === 'functional') {
+        suite.setup(() => TestUtils.httpServer().start());
+    }
 };

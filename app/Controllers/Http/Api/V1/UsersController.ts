@@ -6,7 +6,7 @@ export default class UsersController {
     /**
      * Create a new user.
      */
-    public async store({ request, bouncer }: HttpContextContract) {
+    public async store({ request, response, bouncer }: HttpContextContract) {
         return bouncer
             .with('UserPolicy')
             .authorize('create')
@@ -15,18 +15,18 @@ export default class UsersController {
 
                 const user = await User.create(data);
 
-                return { ok: true, data: user };
+                return response.created({ ok: true, data: user });
             });
     }
 
     /**
      * Get a user.
      */
-    public async show({ params, bouncer }: HttpContextContract) {
+    public async show({ response, params, bouncer }: HttpContextContract) {
         const user = await User.findOrFail(params.id);
 
         await bouncer.with('UserPolicy').authorize('view', user);
 
-        return { ok: true, data: user };
+        return response.ok({ ok: true, data: user });
     }
 }

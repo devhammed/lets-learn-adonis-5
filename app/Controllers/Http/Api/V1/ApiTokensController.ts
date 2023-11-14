@@ -6,7 +6,7 @@ export default class ApiTokensController {
     /**
      * Create a new user token.
      */
-    public async store({request, auth, bouncer}: HttpContextContract) {
+    public async store({response, request, auth, bouncer}: HttpContextContract) {
         return bouncer
             .with('ApiTokenPolicy')
             .authorize('create')
@@ -22,16 +22,19 @@ export default class ApiTokensController {
                         .use('api')
                         .attempt(email, password, {expiresIn: '30 days'});
 
-                    return {
+                    return response.created({
                         ok: true,
                         data: {
                             token,
                             type,
                             expiresAt: expiresAt?.toUnixInteger(),
                         },
-                    };
+                    });
                 } catch {
-                    return {ok: false, message: 'Invalid credentials.'};
+                    return response.unauthorized({
+                        ok: false,
+                        message: 'Invalid credentials.',
+                    });
                 }
             });
     }
