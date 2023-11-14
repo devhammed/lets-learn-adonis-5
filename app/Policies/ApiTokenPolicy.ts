@@ -1,9 +1,10 @@
 import User from 'App/Models/User'
 import ApiToken from 'App/Models/ApiToken'
-import { BasePolicy } from '@ioc:Adonis/Addons/Bouncer'
+import { BasePolicy, action } from '@ioc:Adonis/Addons/Bouncer'
 
 export default class ApiTokenPolicy extends BasePolicy {
-	public async create(_user: User) {
+	@action({allowGuest: true})
+	public async create(_user: User|null) {
 		return true;
 	}
 
