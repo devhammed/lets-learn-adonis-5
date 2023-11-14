@@ -10,9 +10,8 @@ export default class ApiTokensController {
 
         try {
             const {
-                token: value,
+                token,
                 type,
-                user,
                 expiresAt,
             } = await auth
                 .use('api')
@@ -20,13 +19,10 @@ export default class ApiTokensController {
 
             return {
                 ok: true,
-                data: {
-                    token: {
-                        value,
-                        type,
-                        expiresAt: expiresAt!.toUnixInteger(),
-                    },
-                    user,
+                data:{
+                    token,
+                    type,
+                    expiresAt: expiresAt?.toUnixInteger(),
                 },
             };
         } catch {
