@@ -1,12 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{ t('@locale') }}">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Learning AdonisJS - A fully featured web framework for Node.js</title>
   @entryPointStyles('app')
-  @entryPointScripts('app')
 </head>
 
 <body>
@@ -19,6 +18,8 @@
       </p>
     </div>
   </main>
+
+  @entryPointScripts('app')
 </body>
 
 </html>

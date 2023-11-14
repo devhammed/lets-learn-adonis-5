@@ -1,0 +1,6 @@
+{
+  "@locale": "fr",
+  "validator.shared.required": "The value for the field is required",
+  "validator.shared.unique": "The value provided for the field is already in use",
+  "validator.shared.minLength": "The field must have { minLength } items"
+}
