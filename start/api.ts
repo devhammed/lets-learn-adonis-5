@@ -1,9 +1,9 @@
 /*
 |--------------------------------------------------------------------------
-| API v1 Routes
+| API Routes
 |--------------------------------------------------------------------------
 |
-| This file is dedicated for defining HTTP API v1 routes.
+| This file is dedicated for defining HTTP API routes.
 |
 */
 
