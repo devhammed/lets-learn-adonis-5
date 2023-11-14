@@ -11,9 +11,11 @@ export default class ApiTokensController {
             .with('ApiTokenPolicy')
             .authorize('create')
             .then(async () => {
-                const {email, password} = await request.validate(ApiTokensValidator);
-
                 try {
+                    const {email, password} = await request.validate(
+                        ApiTokensValidator,
+                    );
+
                     const {
                         token,
                         type,
