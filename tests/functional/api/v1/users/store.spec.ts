@@ -20,7 +20,7 @@ test.group(routeName, () => {
         response.assertBodyContains({
             errors: [
                 {
-                    message: 'required validation failed',
+                    message: 'The value for the field is required',
                     field: 'name',
                     rule: 'required',
                 },
@@ -43,7 +43,7 @@ test.group(routeName, () => {
         response.assertBodyContains({
             errors: [
                 {
-                    message: 'required validation failed',
+                    message: 'The value for the field is required',
                     field: 'email',
                     rule: 'required',
                 },
@@ -67,7 +67,7 @@ test.group(routeName, () => {
         response.assertBodyContains({
             errors: [
                 {
-                    message: 'email validation failed',
+                    message: 'The provided value is not a valid email address',
                     field: 'email',
                     rule: 'email',
                 },
@@ -103,7 +103,7 @@ test.group(routeName, () => {
         response.assertBodyContains({
             errors: [
                 {
-                    message: 'unique validation failure',
+                    message: 'The provided value is already in use',
                     field: 'email',
                     rule: 'unique',
                 },
@@ -126,7 +126,7 @@ test.group(routeName, () => {
         response.assertBodyContains({
             errors: [
                 {
-                    message: 'required validation failed',
+                    message: 'The value for the field is required',
                     field: 'password',
                     rule: 'required',
                 },
@@ -150,7 +150,7 @@ test.group(routeName, () => {
         response.assertBodyContains({
             errors: [
                 {
-                    message: 'minLength validation failed',
+                    message: 'The field must be at least 8 long',
                     field: 'password',
                     rule: 'minLength',
                 },
@@ -165,6 +165,7 @@ test.group(routeName, () => {
                 name: 'John Doe',
                 email: faker.internet.email(),
                 password: 'password',
+                password_confirmation: 'pass',
             })
             .send();
 
@@ -173,7 +174,7 @@ test.group(routeName, () => {
         response.assertBodyContains({
             errors: [
                 {
-                    message: 'confirmed validation failed',
+                    message: 'The provided confirmation value does not match',
                     field: 'password_confirmation',
                     rule: 'confirmed',
                 },

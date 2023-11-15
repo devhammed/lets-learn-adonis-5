@@ -11,33 +11,26 @@ export default class ApiTokensController {
             .with('ApiTokenPolicy')
             .authorize('create')
             .then(async () => {
-                try {
-                    const {email, password} = await request.validate(
-                        ApiTokensValidator,
-                    );
+                const {email, password} = await request.validate(
+                    ApiTokensValidator,
+                );
 
-                    const {
+                const {
+                    token,
+                    type,
+                    expiresAt,
+                } = await auth
+                    .use('api')
+                    .attempt(email, password, {expiresIn: '30 days'});
+
+                return response.created({
+                    ok: true,
+                    data: {
                         token,
                         type,
-                        expiresAt,
-                    } = await auth
-                        .use('api')
-                        .attempt(email, password, {expiresIn: '30 days'});
-
-                    return response.created({
-                        ok: true,
-                        data: {
-                            token,
-                            type,
-                            expiresAt: expiresAt?.toUnixInteger(),
-                        },
-                    });
-                } catch {
-                    return response.unauthorized({
-                        ok: false,
-                        message: 'Invalid credentials.',
-                    });
-                }
+                        expiresAt: expiresAt?.toUnixInteger(),
+                    },
+                });
             });
     }
 

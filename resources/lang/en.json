@@ -1,6 +1,14 @@
 {
   "@locale": "en",
   "validator.shared.required": "The value for the field is required",
-  "validator.shared.unique": "The value provided for the field is already in use",
-  "validator.shared.minLength": "The field must have { minLength } items"
+  "validator.shared.unique": "The provided value is already in use",
+  "validator.shared.email": "The provided value is not a valid email address",
+  "validator.shared.confirmed": "The provided confirmation value does not match",
+  "validator.shared.minLength": "The field must be at least {minLength} long",
+  "validator.shared.maxLength": "The field must be at most {maxLength} long",
+  "auth.E_INVALID_AUTH_SESSION": "Your session has expired",
+  "auth.E_INVALID_API_TOKEN": "Invalid or expired API token",
+  "auth.E_INVALID_BASIC_CREDENTIALS": "Invalid credentials",
+  "auth.E_INVALID_AUTH_UID": "Invalid credentials",
+  "auth.E_INVALID_AUTH_PASSWORD": "Invalid credentials"
 }

@@ -15,7 +15,7 @@ export default class UsersController {
 
                 const user = await User.create(data);
 
-                return response.created({ ok: true, data: user });
+                return response.created({ok: true, data: user });
             });
     }
 
