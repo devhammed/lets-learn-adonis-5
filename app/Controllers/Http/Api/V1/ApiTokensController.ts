@@ -18,7 +18,7 @@ export default class ApiTokensController {
                 const {
                     token,
                     type,
-                    expiresAt,
+                    expiresIn,
                 } = await auth
                     .use('api')
                     .attempt(email, password, {expiresIn: '30 days'});
@@ -28,7 +28,7 @@ export default class ApiTokensController {
                     data: {
                         token,
                         type,
-                        expiresAt: expiresAt?.toUnixInteger(),
+                        expiresIn,
                     },
                 });
             });
