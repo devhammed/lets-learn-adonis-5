@@ -35,12 +35,14 @@ export default class ApiTokensController {
     }
 
     /**
-     * Revoke user token.
+     * Destroy a user token.
      */
     public async destroy({params, bouncer, response}: HttpContextContract) {
         const apiToken = await ApiToken.findOrFail(params.id);
 
-        await bouncer.with('ApiTokenPolicy').authorize('delete', apiToken);
+        await bouncer
+            .with('ApiTokenPolicy')
+            .authorize('delete', apiToken);
 
         await apiToken.delete();
 

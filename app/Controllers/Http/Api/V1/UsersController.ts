@@ -11,11 +11,11 @@ export default class UsersController {
             .with('UserPolicy')
             .authorize('create')
             .then(async () => {
-                const data = await request.validate(UsersValidator);
+                const body = await request.validate(UsersValidator);
 
-                const user = await User.create(data);
+                const data = await User.create(body);
 
-                return response.created({ok: true, data: user });
+                return response.created({ok: true, data });
             });
     }
 
@@ -23,10 +23,12 @@ export default class UsersController {
      * Get a user.
      */
     public async show({ response, params, bouncer }: HttpContextContract) {
-        const user = await User.findOrFail(params.id);
+        const data = await User.findOrFail(params.id);
 
-        await bouncer.with('UserPolicy').authorize('view', user);
+        await bouncer
+            .with('UserPolicy')
+            .authorize('view', data);
 
-        return response.ok({ ok: true, data: user });
+        return response.ok({ ok: true, data });
     }
 }
