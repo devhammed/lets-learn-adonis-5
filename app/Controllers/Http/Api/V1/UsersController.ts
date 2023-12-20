@@ -15,7 +15,7 @@ export default class UsersController {
 
                 const data = await User.create(body);
 
-                return response.created({ok: true, data });
+                return response.created({ data });
             });
     }
 
@@ -29,6 +29,6 @@ export default class UsersController {
             .with('UserPolicy')
             .authorize('view', data);
 
-        return response.ok({ ok: true, data });
+        return response.ok({ data });
     }
 }

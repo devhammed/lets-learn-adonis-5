@@ -1,0 +1,27 @@
+type: object
+description: The validation errors related to the request body properties.
+properties:
+  errors:
+    type: array
+    items:
+      type: object
+      properties:
+        rule:
+          type: string
+          description: The validation rule that failed
+          example: required
+        field:
+          type: string
+          description: The field that failed validation
+          example: email
+        message:
+          type: string
+          description: The error message
+          example: The email field is required.
+        args:
+          type: object
+          additionalProperties:
+            type: string
+          example:
+            minLength: 8
+            maxLength: 32

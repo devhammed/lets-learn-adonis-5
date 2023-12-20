@@ -1,0 +1,7 @@
+type: object
+description: When the user does not have permission to access the resource
+properties:
+  message:
+    type: string
+    description: The error message
+    example: 'E_AUTHORIZATION_FAILURE: Not authorized to perform this action'

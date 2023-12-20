@@ -24,7 +24,6 @@ export default class ApiTokensController {
                     .attempt(email, password, {expiresIn: '30 days'});
 
                 return response.created({
-                    ok: true,
                     data: {
                         token,
                         type,

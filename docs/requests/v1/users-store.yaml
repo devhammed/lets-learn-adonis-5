@@ -1,0 +1,21 @@
+type: object
+properties:
+    name:
+        description: The user's name
+        type: string
+    email:
+        description: The user's email address
+        type: string
+        format: email
+    password:
+        description: The user's password
+        type: string
+        format: password
+    password_confirmation:
+        description: The user's password confirmation
+        type: string
+        format: password
+required:
+    - name
+    - email
+    - password

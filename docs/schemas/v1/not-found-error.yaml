@@ -1,0 +1,6 @@
+type: object
+properties:
+    message:
+        type: string
+        description: The error message
+        example: 'E_ROW_NOT_FOUND: Row not found'

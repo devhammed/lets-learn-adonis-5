@@ -1,0 +1,34 @@
+post:
+  summary: Create an API token
+  description: Exchange user credentials for an API token
+  operationId: api-tokens.store
+  tags: [ api-tokens ]
+  requestBody:
+      description: The user credentials
+      required: true
+      content:
+          application/json:
+              schema:
+                $ref: ../../requests/v1/api-tokens-store.yaml
+  responses:
+    201:
+      description: The API token was created successfully
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              data:
+                $ref: ../../schemas/v1/api-token.yaml
+    401:
+      description: The user credentials were invalid
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/v1/unauthorized-error.yaml
+    422:
+      description: The API token could not be created e.g invalid email format
+      content:
+        application/json:
+          schema:
+            $ref: ../../schemas/v1/unprocessable-entity-error.yaml

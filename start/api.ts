@@ -12,7 +12,8 @@ import Route from '@ioc:Adonis/Core/Route';
 Route
     .group(() => {
         Route.resource('users', 'UsersController')
-            .only(['store', 'show']);
+            .only(['store', 'show'])
+            .middleware({show: ['auth:api']});
         Route.resource('api-tokens', 'ApiTokensController')
             .only(['store', 'destroy'])
             .middleware({destroy: ['auth:api']});
