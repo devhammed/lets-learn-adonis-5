@@ -1,6 +1,11 @@
 type: object
 properties:
-    message:
-        type: string
-        description: The error message
-        example: 'E_ROW_NOT_FOUND: Row not found'
+    errors:
+        type: array
+        items:
+            type: object
+            properties:
+                message:
+                    type: string
+                    description: The error message
+                    example: Row not found

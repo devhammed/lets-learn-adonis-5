@@ -9,4 +9,4 @@ properties:
                 message:
                     type: string
                     description: The error message
-                    example: 'E_UNAUTHORIZED_ACCESS: Unauthorized access'
+                    example: Unauthorized access
