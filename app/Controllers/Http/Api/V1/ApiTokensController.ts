@@ -16,15 +16,22 @@ export default class ApiTokensController {
                 );
 
                 const {
+                    tokenHash,
                     token,
                     type,
-                    expiresIn,
+                    expiresIn
                 } = await auth
                     .use('api')
-                    .attempt(email, password, {expiresIn: '30 days'});
+                    .attempt(email, password, {expiresIn: '30d'});
+
+                const { id } = await ApiToken.query()
+                    .where('token', tokenHash)
+                    .select('id')
+                    .firstOrFail();
 
                 return response.created({
                     data: {
+                        id,
                         token,
                         type,
                         expiresIn,

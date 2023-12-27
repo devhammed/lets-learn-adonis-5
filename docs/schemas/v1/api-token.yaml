@@ -1,5 +1,9 @@
 type: object
 properties:
+  id:
+    type: integer
+    format: int64
+    description: The API token ID (Can be used to revoke the token e.g DELETE /api-tokens/{id} for logout)
   token:
     description: The API token
     type: string
