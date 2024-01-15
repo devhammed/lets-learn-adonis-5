@@ -78,22 +78,18 @@ test.group(routeName, () => {
     test('it should require unique email', async ({client, route}) => {
         const email = faker.internet.email();
 
-        await client
-            .post(route(routeName))
-            .json({
-                name: 'John Doe',
-                email,
-                password: 'password',
-                password_confirmation: 'password',
-            })
-            .send();
+        const payload = {
+            name: 'John Doe',
+            email,
+            password: 'password',
+        };
+
+        await User.create(payload);
 
         const response = await client
             .post(route(routeName))
             .json({
-                name: 'John Doe',
-                email,
-                password: 'password',
+                ...payload,
                 password_confirmation: 'password',
             })
             .send();
