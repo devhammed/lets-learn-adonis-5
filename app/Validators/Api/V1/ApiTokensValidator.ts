@@ -5,11 +5,12 @@ export default class ApiTokensValidator {
     constructor(protected ctx: HttpContextContract) {}
 
     public schema = schema.create({
-        email: schema.string({ trim: true }, [
+        email: schema.string([
+            rules.trim(),
             rules.required(),
             rules.email(),
         ]),
-        password: schema.string({}, [
+        password: schema.string([
             rules.required(),
             rules.minLength(8),
         ]),

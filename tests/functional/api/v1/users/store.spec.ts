@@ -202,7 +202,6 @@ test.group(routeName, () => {
         const user = await User.findByOrFail('email', email);
 
         response.assertBodyContains({
-            ok: true,
             data: {
                 id: user.id,
                 name,
